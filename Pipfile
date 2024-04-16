@@ -1,0 +1,29 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+dvc = {version = "*", extras = ["gs"]}
+jupyterlab = "*"
+pandas = "*"
+numexpr = "*"
+bottleneck = "*"
+typer = "*"
+matplotlib = "*"
+seaborn = "*"
+scikit-learn = "*"
+shap = "*"
+
+[dev-packages]
+black = "*"
+isort = "*"
+pre-commit = "*"
+pydocstyle = "*"
+pylint = "*"
+mypy = "*"
+visiumlint = "*"
+pytest = "*"
+
+[requires]
+python_version = "3.10"

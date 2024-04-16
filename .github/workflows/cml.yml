@@ -1,0 +1,63 @@
+name: CML
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  launch-runner:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: iterative/setup-cml@v1
+      - uses: actions/checkout@v3
+      - name: Deploy runner on Medium instance
+        env:
+          #
+          REPO_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          GOOGLE_APPLICATION_CREDENTIALS_DATA: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_DATA }}
+          #
+        run: |
+          cml runner launch \
+              --cloud=gcp \
+              --cloud-region=europe-west6-b \
+              --cloud-type=m \
+              --labels=cml-runner
+
+  train:
+    needs: launch-runner
+    runs-on: [self-hosted, cml-runner]
+    timeout-minutes: 2880
+    steps:
+      - uses: iterative/setup-cml@v1
+
+      - uses: actions/checkout@v3
+
+      - id: "auth"
+        uses: "google-github-actions/auth@v1"
+        with:
+          #
+          credentials_json: "${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_DATA }}"
+          #
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pipenv
+          pipenv install --dev --system --deploy
+
+      - name: Train model, push data and create PR
+        env:
+          #
+          REPO_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          #
+        run: |
+          dvc pull --allow-missing
+          dvc repro
+          dvc push
+          cml pr create . --merge

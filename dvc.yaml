@@ -1,0 +1,31 @@
+stages:
+  preprocess:
+    cmd: python -m src.pipeline.preprocess.preprocessing
+      --input-folder "data/raw/"
+      --output-folder "data/preprocess/"
+    deps:
+      - src/pipeline/preprocess
+    outs:
+      - data/preprocess
+
+  train:
+    cmd: python -m src.pipeline.train.training
+      --preprocess-folder "data/preprocess/"
+      --output-folder "data/train/"
+    deps:
+      - data/preprocess
+      - src/pipeline/train
+    outs:
+      - data/train
+    params:
+      - params.py:
+          - SEED
+
+  evaluate:
+    cmd: python -m src.pipeline.evaluate.evaluation
+      --preprocess-folder "data/preprocess"
+      --train-folder "data/train/"
+    deps:
+      - data/preprocess
+      - data/train
+      - src/pipeline/evaluate

@@ -1,0 +1,8 @@
+repos:
+- repo: local
+  hooks:
+    - id: visiumlint
+      name: check that the code is formatted according to visium standards
+      entry: pipenv run visiumlint --hook
+      language: system
+      types: [python]
