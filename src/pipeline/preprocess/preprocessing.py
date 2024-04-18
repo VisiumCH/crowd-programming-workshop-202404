@@ -20,7 +20,6 @@ def main(input_folder: Path = typer.Option(...), output_folder: Path = typer.Opt
 
     # Encode categorical
     binary_cols = [col for col in df.columns if len(df[col].unique()) == 2]
-    print(binary_cols)
     n_unique_by_column = df.nunique()
     binary_cols = n_unique_by_column[n_unique_by_column == 2].index
     df = pd.get_dummies(df, columns=binary_cols, drop_first=True, dtype=float)  # maybe drop_first False or other method
@@ -30,13 +29,12 @@ def main(input_folder: Path = typer.Option(...), output_folder: Path = typer.Opt
     # Split data
     df_train, df_test = train_test_split(df, test_size=0.2)
     df_train, df_val = train_test_split(df_train, test_size=0.2)
-    print(df_train.shape, df_val.shape, df_test.shape)
+    print(f"{df_train.shape=}, {df_val.shape=}, {df_test.shape=}")
 
     # Save data
-    # TODO: Save data to parquet
-    df_train.to_csv(output_folder / "train_data.csv", index=False)
-    df_val.to_csv(output_folder / "val_data.csv", index=False)
-    df_test.to_csv(output_folder / "test_data.csv", index=False)
+    df_train.to_parquet(output_folder / "train_data.parquet", index=False)
+    df_val.to_parquet(output_folder / "val_data.parquet", index=False)
+    df_test.to_parquet(output_folder / "test_data.parquet", index=False)
 
 
 if __name__ == "__main__":

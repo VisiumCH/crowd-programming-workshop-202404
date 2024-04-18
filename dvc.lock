@@ -6,14 +6,14 @@ stages:
     deps:
     - path: src/pipeline/preprocess
       hash: md5
-      md5: eb065a4013762fe2c8ff5b044eddaecb.dir
-      size: 1635
+      md5: 8260624b4b5a55764d29de5f1693b825.dir
+      size: 1572
       nfiles: 2
     outs:
     - path: data/preprocess
       hash: md5
-      md5: 0bef8a54092da8297dfeea73c938e3ac.dir
-      size: 105893
+      md5: 0d3aad6e7d0f13fa5ee381d7304a94ef.dir
+      size: 99640
       nfiles: 3
   train:
     cmd: python -m src.pipeline.train.training --preprocess-folder "data/preprocess/"
@@ -21,13 +21,13 @@ stages:
     deps:
     - path: data/preprocess
       hash: md5
-      md5: 0bef8a54092da8297dfeea73c938e3ac.dir
-      size: 105893
+      md5: 0d3aad6e7d0f13fa5ee381d7304a94ef.dir
+      size: 99640
       nfiles: 3
     - path: src/pipeline/train
       hash: md5
-      md5: 4dde5789a75857373cc0acbd95a1a098.dir
-      size: 1250
+      md5: 77e525a708041d3b75310f17c6506b86.dir
+      size: 1469
       nfiles: 2
     params:
       params.py:
@@ -35,8 +35,8 @@ stages:
     outs:
     - path: data/train
       hash: md5
-      md5: aba29454e9c2303472b70dd194f3ea64.dir
-      size: 3334230
+      md5: 93fc32f25b693493ec68313a5492d32b.dir
+      size: 3396162
       nfiles: 1
   evaluate:
     cmd: python -m src.pipeline.evaluate.evaluation --preprocess-folder "data/preprocess"
@@ -44,16 +44,16 @@ stages:
     deps:
     - path: data/preprocess
       hash: md5
-      md5: 0bef8a54092da8297dfeea73c938e3ac.dir
-      size: 105893
+      md5: 0d3aad6e7d0f13fa5ee381d7304a94ef.dir
+      size: 99640
       nfiles: 3
     - path: data/train
       hash: md5
-      md5: aba29454e9c2303472b70dd194f3ea64.dir
-      size: 3334230
+      md5: 93fc32f25b693493ec68313a5492d32b.dir
+      size: 3396162
       nfiles: 1
     - path: src/pipeline/evaluate
       hash: md5
-      md5: ceb3990296eeb56b57c1a306cd04ab10.dir
-      size: 1049
+      md5: ea95423ef009670bf0d89fd0a9a3ed50.dir
+      size: 1045
       nfiles: 2

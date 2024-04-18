@@ -27,8 +27,8 @@ def split_feature_and_label(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.Series]:
 def main(preprocess_folder: Path = typer.Option(...), output_folder: Path = typer.Option(...)) -> None:
     """Main function."""
     # Load Data
-    df_train = pd.read_csv(preprocess_folder / "train_data.csv")
-    df_val = pd.read_csv(preprocess_folder / "val_data.csv")
+    df_train = pd.read_parquet(preprocess_folder / "train_data.parquet")
+    df_val = pd.read_parquet(preprocess_folder / "val_data.parquet")
 
     X_train, y_train = split_feature_and_label(df_train)
     X_val, y_val = split_feature_and_label(df_val)

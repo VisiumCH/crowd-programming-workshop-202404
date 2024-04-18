@@ -12,8 +12,8 @@ from src.pipeline.train.training import split_feature_and_label
 
 def main(preprocess_folder: Path = typer.Option(...), train_folder: Path = typer.Option(...)) -> None:
     """Main function."""
-    df_test = pd.read_csv(preprocess_folder / "test_data.csv")
-    df_train = pd.read_csv(preprocess_folder / "train_data.csv")
+    df_test = pd.read_parquet(preprocess_folder / "test_data.parquet")
+    df_train = pd.read_parquet(preprocess_folder / "train_data.parquet")
 
     X_test, y_test = split_feature_and_label(df_test)
     _, y_train = split_feature_and_label(df_train)
