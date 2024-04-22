@@ -15,16 +15,11 @@ seaborn = "*"
 scikit-learn = "*"
 shap = "*"
 pyarrow = "*"
+ruff = "*"
 
 [dev-packages]
-black = "*"
-isort = "*"
+ruff = "*"
 pre-commit = "*"
-pydocstyle = "*"
-pylint = "*"
-mypy = "*"
-visiumlint = "*"
-pytest = "*"
 
 [requires]
 python_version = "3.10"

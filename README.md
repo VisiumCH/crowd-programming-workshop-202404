@@ -1,6 +1,6 @@
-[![CI](https://github.com/VisiumCH/crowd_programming/actions/workflows/ci.yml/badge.svg)](https://github.com/VisiumCH/crowd_programming/actions/workflows/ci.yml)
-
 # README
+
+[![CI](https://github.com/VisiumCH/crowd_programming/actions/workflows/ci.yml/badge.svg)](https://github.com/VisiumCH/crowd_programming/actions/workflows/ci.yml)
 
 ## Set up your development environment and run the DVC pipeline
 
@@ -15,10 +15,10 @@ The python environment is managed with `pipenv`. You can set up your environment
 
 ## Some tips about pipenv
 
-**Deploy in production**
+### Deploy in production
 
 Note that when deploying your code in production, you should not install the dev package, it is preferred to run the following command: `pipenv install --system --deploy`.
 
-**Git with pipenv**
+### Git with pipenv
 
 Make sure to commit the `Pipfile.lock` in `git`. It will make your code more reproducible because other developers could install the exact same python packages as you used.
