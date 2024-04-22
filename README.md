@@ -1,6 +1,6 @@
 # README
 
-[![CI](https://github.com/VisiumCH/crowd_programming/actions/workflows/ci.yml/badge.svg)](https://github.com/VisiumCH/crowd_programming/actions/workflows/ci.yml)
+[![CI](https://github.com/VisiumCH/crowd-programming-workshop-202404/actions/workflows/ci.yml/badge.svg)](https://github.com/VisiumCH/crowd_programming/actions/workflows/ci.yml)
 
 ## Set up your development environment and run the DVC pipeline
 
