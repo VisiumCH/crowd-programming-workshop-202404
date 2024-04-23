@@ -10,7 +10,6 @@ The python environment is managed with `pipenv`. You can set up your environment
 - Run `pipenv install --dev` to actually create a virtual environment and install the python packages. The flag `--dev` allows to install the development packages (for linting, ...).
 - Run `pipenv shell` to activate your python environment!
 - Run `pre-commit install` to install pre-commits and make sure visiumlint is run at every commit.
-- Run `gcloud auth` to authenticate to your GCP account.
 - Finally run `dvc repro` to execute the complete pipeline! You can also execute a single step and its dependencies with `dvc repro <step_name>`.
 
 ## Some tips about pipenv
