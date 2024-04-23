@@ -133,6 +133,3 @@ dmypy.json
 
 # Remove GCP credentials
 gha-creds-*.json
-
-# DVC
-.dvc
